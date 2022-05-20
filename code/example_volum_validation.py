@@ -62,8 +62,6 @@ print("--> Poisson Meshing with Octree Depth d={} ..." .format(d))
 t = time.time()
 mesh, densities = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(pcd, depth=d, width=0, scale=1.1, linear_fit=True, n_threads=-1)
 print("===> Poisson Meshing [DONE], process time = {:10.4f} seconds" .format(time.time() - t))
-mesh.compute_triangle_normals()
-
 
 if SHOW_O3D:
       print("--> Visualize Mesh:")
