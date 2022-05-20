@@ -11,11 +11,11 @@ print("EXAMPLE: synthetic Point Cloud Surface Reconstruction")
 print("=====================================================\n")
 
 # Set Visualization Toggle
-SHOW_O3D = False
+SHOW_O3D = True
 SHOW_PV = True
 
 # Import {x,y,z} coordinates from csv
-path = "../samples/pyramid.csv"
+path = "./samples/pyramid.csv"
 data = genfromtxt(path, delimiter=',')
 print("--> Importing: ", path)
 
