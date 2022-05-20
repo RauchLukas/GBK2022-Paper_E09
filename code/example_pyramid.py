@@ -1,7 +1,6 @@
 # Author: Lukas Rauch
 # Data: 18.05.2022
 
-from lib2to3.pgen2.grammar import opmap_raw
 import open3d as o3d
 import numpy as np
 from numpy import genfromtxt
