@@ -1,14 +1,15 @@
 # Author: Lukas Rauch
 # Data: 18.05.2022
 
+from lib2to3.pgen2.grammar import opmap_raw
 import open3d as o3d
 import numpy as np
 from numpy import genfromtxt
 import time
 
-print("\n=====================================================")
-print("EXAMPLE: synthetic Point Cloud Surface Reconstruction")
-print("=====================================================\n")
+print("\n============================================================================")
+print("EXAMPLE: synthetic Point Cloud Surface Reconstruction and volume calculus")
+print("============================================================================\n")
 
 # Set Visualization Toggle
 SHOW_O3D = False
@@ -20,6 +21,14 @@ path = ""
 path = "./samples/6e_pyramid.csv"
 data = genfromtxt(path, delimiter=',')
 print("--> Importing: ", path)
+
+
+"""
+Object Reconstruction
+
+with the help of Open3D
+https://github.com/isl-org/Open3D
+"""
 
 # Create open3D Point Cloud Database
 pcd = o3d.geometry.PointCloud()
@@ -49,7 +58,7 @@ if SHOW_O3D:
 
 
 # Poisson Meshing
-d = 9
+d = 8
 print("--> Poisson Meshing with Octree Depth d={} ..." .format(d))
 t = time.time()
 mesh, densities = o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(pcd, depth=d, width=0, scale=1.1, linear_fit=True, n_threads=-1)
@@ -68,7 +77,7 @@ if SHOW_O3D:
             "\n\t\tCrtl + 9 - normals as color")
       o3d.visualization.draw_geometries([mesh, pcd, xyz], mesh_show_wireframe=True, mesh_show_back_face=True)
 
-
+print("----------------------------------------------")
 
 
 
@@ -92,8 +101,10 @@ f = np.c_[np.full(len(f), 3), f]
 mesh_pv = pv.PolyData(v, f)
 
 # Clip mesh at the X-Y Plane
-mesh_c = mesh_pv.clip(normal='z', origin=(0,0,0), invert=False)
 
+origin=(0,0,0)
+mesh_c = mesh_pv.clip(normal='z', origin=origin, invert=False)
+print("\n--> Clipping Poisson Mesh at: ", origin)
 
 # Set point color by Scalar Field of coordinate z
 # Mesh will interpolate Point Data
@@ -116,6 +127,7 @@ if SHOW_PV:
 
 # Using the PyVista - VTK compatibility to apply extrusion to surface filter.
 # PyVista is working already on a native PyVista integration of the functionality
+t = time.time()
 alg = vtk.vtkTrimmedExtrusionFilter()
 alg.SetInputData(0, mesh_c)
 alg.SetInputData(1, trim_surface)
@@ -123,7 +135,8 @@ alg.SetCappingStrategy(0) # <-- ensure that the cap is defined by the intersecti
 alg.SetExtrusionDirection(0, 0, h) # <-- set this with the plane normal
 alg.Update()
 output = pv.core.filters._get_output(alg).compute_normals()
-print("Output Volume: ", output.volume)
+print("===> DTA Volume Computation [DONE], process time = {:10.4f} seconds" .format(time.time() - t))
+print("\n==> Extruded Volume: ", output.volume)
 
 p.add_mesh(output, color='gold', show_edges=True, opacity=0.5)
 
