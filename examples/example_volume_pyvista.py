@@ -4,6 +4,9 @@ import numpy as np
 import vtk
 
 def volume_pyvista():
+    print("\n=====================================================")
+    print("EXAMPLE: Volume Calculus with PyVista")
+    print("=====================================================\n")
 
     p = pyvista.Plotter()
     p.show_bounds()

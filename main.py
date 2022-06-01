@@ -1,10 +1,12 @@
 # author: Lukas Rauch
 #date: 20.05.2022
-
+import examples.example_wall_scan
 from examples.example_mesh_quality import mesh_quality
 from examples.example_reconstruction import reconstruction
 from examples.example_volume_pyvista import volume_pyvista
 from examples.example_volume_validation import volume_validation
+from examples.example_synthetic_mesh import synthetic_mesh
+from examples.example_wall_scan import wall_scan
 
 author = "Lukas Rauch"
 
@@ -19,6 +21,8 @@ if __name__ == "__main__":
     RECONSTRUCTION = False
     VOLUME_VALIDATION = False
     VOLUME_PYVISTA = False
+    SYNTHETIC_MESH = False
+    WALL_SCAN = False
 
     if MESH_QUALITY:
         mesh_quality()
@@ -28,7 +32,14 @@ if __name__ == "__main__":
         volume_validation()
     if VOLUME_PYVISTA:
         volume_pyvista()
+    if SYNTHETIC_MESH:
+        synthetic_mesh()
+    if WALL_SCAN:
+        wall_scan()
+
+
         
+    print("done.")
 
 
 

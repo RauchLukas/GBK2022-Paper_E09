@@ -8,8 +8,8 @@ import pyvista as pv
 import vtk
 import time
 
-def volume_validation():
 
+def volume_validation():
       print("\n============================================================================")
       print("EXAMPLE: synthetic Point Cloud Surface Reconstruction and volume calculus")
       print("============================================================================\n")

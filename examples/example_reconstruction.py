@@ -6,8 +6,8 @@ import numpy as np
 from numpy import genfromtxt
 import time
 
+
 def reconstruction():
-      
       print("\n=====================================================")
       print("EXAMPLE: synthetic Point Cloud Surface Reconstruction")
       print("=====================================================\n")

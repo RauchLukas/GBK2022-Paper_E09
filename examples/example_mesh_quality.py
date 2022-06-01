@@ -8,8 +8,8 @@ import pyvista as pv
 import vtk
 import time
 
+
 def mesh_quality():
-      
       print("\n=====================================================")
       print("EXAMPLE: Computes the scaled Jacobian mesh quality")
       print("=====================================================\n")
