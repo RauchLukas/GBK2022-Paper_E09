@@ -7,6 +7,7 @@ from examples.example_volume_pyvista import volume_pyvista
 from examples.example_volume_validation import volume_validation
 from examples.example_synthetic_mesh import synthetic_mesh
 from examples.example_wall_scan import wall_scan
+from examples.example_wedges_topography import wedges_terrain
 
 author = "Lukas Rauch"
 
@@ -17,12 +18,13 @@ if __name__ == "__main__":
     print("https://www.betonkolloquium.at/\n")
     print("Author: ", author)
 
-    MESH_QUALITY = True
+    MESH_QUALITY = False
     RECONSTRUCTION = False
     VOLUME_VALIDATION = False
     VOLUME_PYVISTA = False
     SYNTHETIC_MESH = False
     WALL_SCAN = False
+    WEDGES_TERRAIN = True
 
     if MESH_QUALITY:
         mesh_quality()
@@ -36,6 +38,8 @@ if __name__ == "__main__":
         synthetic_mesh()
     if WALL_SCAN:
         wall_scan()
+    if WEDGES_TERRAIN:
+        wedges_terrain()
 
 
         
