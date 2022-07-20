@@ -47,7 +47,7 @@ def wedges_terrain():
 
     mesh = Mesh(v, f)
 
-    plane = Plane([0, 0, 1, 2])
+    plane = Plane([0, 0, 1, 0])
     c_xyz = plane.p_origin
 
     proj = Projection(mesh=mesh, plane=plane)
