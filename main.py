@@ -9,6 +9,7 @@ from examples.example_synthetic_mesh import synthetic_mesh
 from examples.example_wall_scan import wall_scan
 from examples.example_wedges_topography import wedges_terrain
 from examples.example_volume_validation_wedge import volume_validation_wedge
+from examples.example_blob import example_blob
 
 author = "Lukas Rauch"
 
@@ -26,7 +27,8 @@ if __name__ == "__main__":
     SYNTHETIC_MESH = False
     WALL_SCAN = False
     WEDGES_TERRAIN = False
-    VOLUME_VALIDATION_WEDGE = True
+    VOLUME_VALIDATION_WEDGE = False
+    VOLUME_VALIDATION_BLOB = True
 
     if MESH_QUALITY:
         mesh_quality()
@@ -44,6 +46,8 @@ if __name__ == "__main__":
         wedges_terrain()
     if VOLUME_VALIDATION_WEDGE:
         volume_validation_wedge()
+    if VOLUME_VALIDATION_BLOB:
+        example_blob()
 
 
         
