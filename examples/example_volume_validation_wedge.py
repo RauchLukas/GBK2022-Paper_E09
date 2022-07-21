@@ -106,19 +106,26 @@ def volume_validation_wedge():
 
     proj = Projection(mesh=my_mesh, plane=plane)
 
-    print("--> Project Mesh Points to plane [a, b, c, d] = ", plane )
+    print("--> Project Mesh Points to plane [a, b, c, d] = ", plane.plane)
+    s = time.time()
     projected_verts, _ = proj.project_points(vertices)
+    print("\t[INFO]: time: {:.5f} sec." .format(time.time()-s))
 
     projected_plane = pv.PolyData(projected_verts, mesh.faces)
     projected_verts, _ = proj.project_points(my_mesh.vertices)
 
     print("--> Calculate Mesh surface area.")
+    s = time.time()
     mesh_area = proj.calculate_triangle_area()
-    print("==> Mesh Area SUM = {:.f5}" .format(np.sum(mesh_area)))
+    print("==> Mesh Area SUM = {:.5f}" .format(np.sum(mesh_area)))
+    print("\t[INFO]: time: {:.5f} sec.".format(time.time() - s))
 
     print("--> Calculate projected Volume.")
+    s = time.time()
     volume = proj.volume_mesh_projected(vertices, faces)
-    print("==> Volume SUM = {:.f5}" .format(np.sum(volume)))
+    print("==> Volume SUM = {:.5f}" .format(np.sum(volume)))
+    print("\t[INFO]: time: {:.5f} sec.".format(time.time() - s))
+
     mesh['volume'] = volume
     mesh['area'] = mesh_area
 
