@@ -10,6 +10,7 @@ from examples.example_wall_scan import wall_scan
 from examples.example_wedges_topography import wedges_terrain
 from examples.example_volume_validation_wedge import volume_validation_wedge
 from examples.example_blob import example_blob
+from examples.example_blob_stats import example_volume_blob_stats
 
 author = "Lukas Rauch"
 
@@ -28,7 +29,8 @@ if __name__ == "__main__":
     WALL_SCAN = False
     WEDGES_TERRAIN = False
     VOLUME_VALIDATION_WEDGE = False
-    VOLUME_VALIDATION_BLOB = True
+    VOLUME_VALIDATION_BLOB = False
+    VOLUME_ERROR_STATS_BLOB = True
 
     if MESH_QUALITY:
         mesh_quality()
@@ -48,6 +50,8 @@ if __name__ == "__main__":
         volume_validation_wedge()
     if VOLUME_VALIDATION_BLOB:
         example_blob()
+    if VOLUME_ERROR_STATS_BLOB:
+        example_volume_blob_stats()
 
 
         

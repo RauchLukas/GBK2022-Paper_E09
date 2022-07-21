@@ -11,9 +11,9 @@ def example_blob():
 
     x0, x1 = 0, 1
     y0, y1 = 0, 1
-
     d = 8
 
+    # Function to evaluate
     function_z = lambda x, y: d * (1 - x) * x * (1 - y) * y
 
     # reference value
